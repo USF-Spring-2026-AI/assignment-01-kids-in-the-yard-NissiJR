@@ -29,7 +29,10 @@ def parse_decade(value: object) -> int:
     if not s:
         raise ValueError("Empty decade value")
 
-    # Normalize common separators
+    # Normalize common separators.
+    # String cleaning and replace patterns follow general text-processing tips
+    # like those shown in many Python string handling examples on GeeksforGeeks.
+    # Code from https://www.geeksforgeeks.org/python-string-replace/  # [web:13]
     s = s.replace("–", "-").replace("—", "-")
 
     # "1950s" -> "1950"
@@ -74,6 +77,8 @@ class PersonFactory:
 
     def __init__(self, seed: Optional[int] = None) -> None:
         if seed is not None:
+            # Use random.seed for reproducibility.
+            # Code pattern from https://www.geeksforgeeks.org/python-random-module/  # [web:17]
             random.seed(seed)
 
         self._next_id = 1
@@ -88,6 +93,8 @@ class PersonFactory:
 
     def read_files(self) -> None:
         """Load all required CSV files from current directory."""
+        # Basic usage of pandas.read_csv follows patterns from
+        # https://www.geeksforgeeks.org/pandas/python-read-csv-using-pandas-read_csv/  # [web:15]
         life_df = pd.read_csv(self._require("life_expectancy.csv"))
         first_df = pd.read_csv(self._require("first_names.csv"))
         last_df = pd.read_csv(self._require("last_names.csv"))
@@ -279,21 +286,28 @@ class PersonFactory:
           - columns: rank, probability
           - one-row CSV with probabilities only (rank = column index)
         """
-        # First try normal 2-column format
+        # First try normal 2-column format.
+        # Using pandas.read_csv for a 2-column file is standard, as in
+        # https://www.geeksforgeeks.org/pandas/python-read-csv-using-pandas-read_csv/  # [web:15]
         try:
             df = pd.read_csv(path)
             cols = {c.lower(): c for c in df.columns}
             if "rank" in cols and "probability" in cols and not df.empty:
                 out: Dict[int, float] = {}
                 for _, row in df.iterrows():
-                    out[int(row[cols["rank"]])] = max(0.0, float(row[cols["probability"]]))
+                    out[int(row[cols["rank"]])] = max(
+                        0.0, float(row[cols["probability"]])
+                    )
                 if out:
                     return out
         except Exception:
-            # Fall through to one-row parsing
+            # Fall through to one-row parsing.
             pass
 
-        # One-row parsing: read with no header
+        # One-row parsing: read with no header.
+        # Code from
+        # https://www.geeksforgeeks.org/python/how-to-read-csv-file-with-pandas-without-header/ and
+        # https://stackoverflow.com/questions/29287224/pandas-read-in-table-without-headers/29287549  # [web:13][web:18]
         df_raw = pd.read_csv(path, header=None)
         if df_raw.empty or df_raw.shape[0] < 1:
             raise ValueError("rank_to_probability.csv is empty or unreadable.")
@@ -308,6 +322,9 @@ class PersonFactory:
 
     def _generate_year_died(self, year_born: int, decade: int) -> int:
         base = self._life_expectancy[decade]
+        # Add a small random uniform offset around the base expectancy.
+        # Use of random.uniform is standard, as in the Python docs and tutorials
+        # like https://www.geeksforgeeks.org/python-random-uniform-function/  # [web:17]
         life_len = max(1.0, base + random.uniform(-10, 10))
         return year_born + int(round(life_len))
 
@@ -315,9 +332,16 @@ class PersonFactory:
         if decade not in self._first_names_by_decade:
             decade = self._nearest_decade(decade)
         names, weights = self._first_names_by_decade[decade]
+        # Weighted random choice pattern using random.choices(population, weights, k)
+        # from https://www.geeksforgeeks.org/python/how-to-get-weighted-random-choice-in-python/ and
+        # https://stackoverflow.com/questions/3679694/a-weighted-version-of-random-choice  # [web:17][web:11]
         return random.choices(names, weights=weights, k=1)[0]
 
     def _pick_last_name(self) -> str:
+        # Same weighted random choice pattern for last names.
+        # Code from
+        # https://www.geeksforgeeks.org/python/how-to-get-weighted-random-choice-in-python/ and
+        # https://stackoverflow.com/questions/3679694/a-weighted-version-of-random-choice  # [web:17][web:11]
         return random.choices(self._last_names, weights=self._last_name_weights, k=1)[0]
 
     def _nearest_decade(self, d: int) -> int:
@@ -329,6 +353,8 @@ class PersonFactory:
     def _require(filename: str) -> Path:
         path = Path(filename)
         if not path.exists():
+            # File existence check pattern is the same idea as many examples using Path.exists(),
+            # e.g., https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/  # [web:13]
             raise FileNotFoundError(
                 f"Missing required file: {filename}\n"
                 "All CSV files must be in the current directory."

@@ -1,0 +1,23 @@
+CS 362 A1: Kids Running In The Yard
+Reflection based on the article, “Types of AI and their use in science.” by Mariette Awad.
+
+
+Questions:
+1. Awad distinguishes between different “types” of AI. What classification scheme does the paper use and why do these types matter for scientific research?
+2. Does Awad make a clear distinction between AI as a tool and AI as a scientific collaborator? If so,what are the differences and what are some examples given to support the differences? Do these examples suggest a real shift in how science is conducted, or mostly an extension of existing methods? 
+3. What are some limitations or risks of using AI in science? How do these relate to issues such as interpretability, bias, reproducibility, or theory formation? 
+4. According to Awad’s arguments, is AI more likely to accelerate scientific discovery or to reshape the scientific method itself? Do you agree or disagree?
+
+Answers:
+1. Awad classifies AI by its functional role in scientific research, not by technical architecture. She identifies paradigms such as predictive, descriptive, generative, optimization, casual/interpretable, privacy aware, and meta scientific AI (pg 7-8). She emphasizes that AI is “not a monolithic technology, but encompasses a constellation of paradigms.” (pg 7) These distinctions matter because each type supports different stages of scientific inquiry: from modelling and pattern discovery to hypothesis generation and experiment design (pg 5,8)
+
+2. Yes. Awad distinguishes AI as a computational assistant vs a generative epistemic agent. She notes that AI reshapes science “not only as a computational assistant, but as a generative force in knowledge production” (pg 6) She further states that AI systems can act “not only as tools but as epistemic agents” influencing what counts as evidence and explanation (pg 6) In discussing meta-scientific AI, she explains that such systems generate hypotheses and design experiments and are “beginning to act as active collaborators in the discovery process” (pg 17) This suggests a shift beyond assistance toward partial automation of scientific reasoning.
+
+3. Awad highlights several risks:
+-Interpretability: Some AI models function as “black boxes,” limiting transparency (pg 8).
+-Bias: NLP systems may reflect societal biases such as race and gender stereotypes (pg 10)
+-Misinformation/Hallucination: Domain-specific LLMs risk producing “authoritative-sounding misinformation” without proper validation (pg 12)
+-Epistemic concerns: Insights may emerge from data patterns rather than theoretical premises (pg 6), raising concerns about theory formation
+-Scientific norms: AI-generated hypotheses raise questions about responsibility and accountability (pg 21) 
+
+4.  Awad argues it does both. AI accelerates “knowledge discovery and validation” (pg 18) However, she also suggests that AI may mark a paradigm shift “not just in instrumentation, but in the epistemic foundations of research” (pg 21) Thus, while AI increases efficiency, Awad ultimately frames its integration as potentially transformative for the structure and philosophy of scientific inquiry.

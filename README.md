@@ -1,12 +1,10 @@
 # AI Assignment 01 - Kids in the Yard
 
-#Comparison questions with LLMs
+# Comparison questions with LLMs
 
 ## 1. Which tool(s) did you use?
 
 I used **ChatGPT (GPT-5-based system)** to assist with debugging, and structural refinement.
-
----
 
 ## 2. What was your prompt to the LLM?
 
@@ -30,8 +28,6 @@ I provided a modified version of the assignment requirements, specifying:
 
 I refined the prompt iteratively to fix CSV parsing issues (e.g., handling `"1950s"` as decades), improve encapsulation, and ensure correctness.
 
----
-
 ## 3. Differences Between My Implementation and the LLM
 
 - Added defensive parsing for malformed CSV data  
@@ -42,8 +38,6 @@ I refined the prompt iteratively to fix CSV parsing issues (e.g., handling `"195
 
 The initial LLM output assumed perfectly formatted data and required refinement for edge cases.
 
----
-
 ## 4. Changes I Would Make Based on LLM Suggestions
 
 - Add additional type hints  
@@ -51,8 +45,6 @@ The initial LLM output assumed perfectly formatted data and required refinement 
 - Improve inline documentation  
 - Reduce minor redundancy  
 - Optimize decade lookups for efficiency  
-
----
 
 ## 5. Changes I Would Refuse to Make
 
